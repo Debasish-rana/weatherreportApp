@@ -1,8 +1,10 @@
 .main {
           border: 2px solid white;
-          width: 350px;
+          width:auto;
           height: 500px;
           margin: auto;
+          margin-left: 10px;
+          margin-right: 10px;
           margin-top: 120px;
           border-radius: 10px;
           background: linear-gradient(to bottom, #00ffff 0%, #3399ff 100%);
