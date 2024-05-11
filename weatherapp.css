@@ -1,7 +1,7 @@
 .main {
   border: 2px solid white;
   width: auto;
-  height: 500px;
+  height: auto;
   margin: auto;
   margin-left: 10px;
   margin-right: 10px;
@@ -22,7 +22,7 @@
   border: none;
 }
 .search-btn img {
-  width: 15px;
+  width: 30px;
   border-radius: 50%;
 }
 .search-btn {
@@ -78,9 +78,8 @@
   font: bold;
 }
 .wind-speed img {
-          width: 50px;
-          
-        }
+  width: 50px;
+}
 .wind {
   display: flex;
   color: white;
@@ -88,4 +87,15 @@
 }
 .wind img {
   width: 60px;
+}
+.error {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 10px;
+  display: none;
+  font: bold;
+  font-size: x-large;
 }
