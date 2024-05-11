@@ -16,28 +16,41 @@
           spellcheck="false"
         />
         <button class="search-btn">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrLX0CezrKam7p5uMm-08aGSPbuMQsglL6xIDfbbemTg&s" alt="" />
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrLX0CezrKam7p5uMm-08aGSPbuMQsglL6xIDfbbemTg&s"
+            alt=""
+          />
         </button>
       </div>
       <div class="weather-img">
-        <img class="weather-icon" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZgWG6mr2-VRNuho8mcEq_n2DMMPuq8sDRSw&s" alt="" />
+        <img
+          class="weather-icon"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZgWG6mr2-VRNuho8mcEq_n2DMMPuq8sDRSw&s"
+          alt=""
+        />
       </div>
       <div class="weather-condition"></div>
       <div class="temperature-container">
-        
         <div class="tempearture">?</div>
         <div class="city">Search your city</div>
       </div>
       <div class="humadity-wind">
         <div class="humadity">
-          <img src="https://w7.pngwing.com/pngs/426/803/png-transparent-computer-icons-moisture-humidity-moisture-thumbnail.png" alt="" />
+          <img
+            src="https://w7.pngwing.com/pngs/426/803/png-transparent-computer-icons-moisture-humidity-moisture-thumbnail.png"
+            alt=""
+          />
           <div>
             <div class="humadity-parcent">?</div>
             <div>Humadity</div>
           </div>
         </div>
         <div class="wind">
-          <img src="https://w7.pngwing.com/pngs/776/348/png-transparent-computer-icons-humidity-weather-wind-speed-famous-family-wind-miscellaneous-text-cloud-thumbnail.png" alt="" srcset="" />
+          <img
+            src="https://w7.pngwing.com/pngs/776/348/png-transparent-computer-icons-humidity-weather-wind-speed-famous-family-wind-miscellaneous-text-cloud-thumbnail.png"
+            alt=""
+            srcset=""
+          />
           <div>
             <div class="wind-speed">?</div>
             <div>Wind Speed</div>
@@ -56,8 +69,8 @@
       "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
     async function checkWeather(city) {
-          //console.log(city)
-      const response = await fetch(apiUrl + city +`&appid=${apiKey}`);
+      //console.log(city)
+      const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
       let data = await response.json();
       console.log(data);
 
@@ -68,7 +81,8 @@
         data.main.humidity + "%";
       document.querySelector(".wind-speed").innerHTML =
         data.wind.speed + "Km/Hr";
-      document.querySelector(".weather-condition").innerHTML = "Weather is - " + data.weather[0].description  
+      document.querySelector(".weather-condition").innerHTML =
+        "Weather is - " + data.weather[0].description;
 
       if (data.weather[0].main === "Haze") {
         weathericons.src = "images/humidity.png";
@@ -85,11 +99,15 @@
       } else if (data.weather[0].main === "Mist") {
         weathericons.src = "images/mist.png";
       }
+       else if (data.weather[0].main === "Thunderstorm") {
+        weathericons.src = "images/thunderstrom.png";
+      }
+      searchBox.value = ""
     }
-    searchBtn.addEventListener("click",()=>{
-          checkWeather(searchBox.value);
-    })
-   
-     //https://api.openweathermap.org/data/2.5/weather?units=metric&q=undefined&appid=de6ec959b12f3b325600ec15a6e581e4  q=undefined because when we pass a parameter in checkWeather every time api run it not gatting city name
+    searchBtn.addEventListener("click", () => {
+      checkWeather(searchBox.value);
+    });
+
+    //https://api.openweathermap.org/data/2.5/weather?units=metric&q=undefined&appid=de6ec959b12f3b325600ec15a6e581e4  q=undefined because when we pass a parameter in checkWeather every time api run it not gatting city name
   </script>
 </html>
