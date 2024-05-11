@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WeatherApp</title>
+    <link rel="stylesheet" href="weatherapp.css" />
+  </head>
+  <body style="background-color: rgb(82, 78, 78)">
+    <div class="main">
+      <div class="container">
+        <input
+          class="input-searchbox"
+          type="text"
+          placeholder="search your city"
+          spellcheck="false"
+        />
+        <button class="search-btn">
+          <img src="/images/search.png" alt="" />
+        </button>
+      </div>
+      <div class="weather-img">
+        <img class="weather-icon" src="/images/samplecloudimage.avif" alt="" />
+      </div>
+      <div class="weather-condition"></div>
+      <div class="temperature-container">
+        
+        <div class="tempearture">?</div>
+        <div class="city">Search your city</div>
+      </div>
+      <div class="humadity-wind">
+        <div class="humadity">
+          <img src="/images/humidity.png" alt="" />
+          <div>
+            <div class="humadity-parcent">?</div>
+            <div>Humadity</div>
+          </div>
+        </div>
+        <div class="wind">
+          <img src="/images/wind.png" alt="" srcset="" />
+          <div>
+            <div class="wind-speed">?</div>
+            <div>Wind Speed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const searchBox = document.querySelector(".input-searchbox");
+    const searchBtn = document.querySelector(".search-btn");
+    const weathericons = document.querySelector(".weather-icon");
+
+    const apiKey = "de6ec959b12f3b325600ec15a6e581e4";
+    const apiUrl =
+      "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+
+    async function checkWeather(city) {
+          //console.log(city)
+      const response = await fetch(apiUrl + city +`&appid=${apiKey}`);
+      let data = await response.json();
+      console.log(data);
+
+      document.querySelector(".city").innerHTML = data.name;
+      document.querySelector(".tempearture").innerHTML =
+        Math.round(data.main.temp) + "°C";
+      document.querySelector(".humadity-parcent").innerHTML =
+        data.main.humidity + "%";
+      document.querySelector(".wind-speed").innerHTML =
+        data.wind.speed + "Km/Hr";
+      document.querySelector(".weather-condition").innerHTML = "Weather is - " + data.weather[0].description  
+
+      if (data.weather[0].main === "Haze") {
+        weathericons.src = "images/humidity.png";
+      } else if (data.weather[0].main === "Clear") {
+        weathericons.src = "images/clear.png";
+      } else if (data.weather[0].main === "Clouds") {
+        weathericons.src = "images/clouds.png";
+      } else if (data.weather[0].main === "Drizzle") {
+        weathericons.src = "images/drizzle.png";
+      } else if (data.weather[0].main === "Rain") {
+        weathericons.src = "images/rain.png";
+      } else if (data.weather[0].main === "Snow") {
+        weathericons.src = "images/snow.png";
+      } else if (data.weather[0].main === "Mist") {
+        weathericons.src = "images/mist.png";
+      }
+    }
+    searchBtn.addEventListener("click",()=>{
+          checkWeather(searchBox.value);
+    })
+   
+     //https://api.openweathermap.org/data/2.5/weather?units=metric&q=undefined&appid=de6ec959b12f3b325600ec15a6e581e4  q=undefined because when we pass a parameter in checkWeather every time api run it not gatting city name
+  </script>
+</html>
